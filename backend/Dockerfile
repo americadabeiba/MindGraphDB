@@ -5,19 +5,23 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
-    postgresql-client \
+    g++ \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
+# Upgrade pip
+RUN pip install --upgrade pip
+
+# Copy requirements
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Download NLTK data
-RUN python -m nltk.downloader punkt stopwords vader_lexicon
+RUN python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('vader_lexicon')"
 
-# Copy application code
+# Copy application
 COPY . .
 
 EXPOSE 8000

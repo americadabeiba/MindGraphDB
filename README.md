@@ -42,10 +42,6 @@
 └───────────────┘     └──────────────┘
 ```
 
-# 🧠 MindGraphDB - Sistema Inteligente de Análisis de Salud Mental
-
-Plataforma web que utiliza grafos, machine learning y big data para analizar factores de depresión en estudiantes.
-
 ## 🚀 Tecnologías
 
 - **Frontend:** React + TypeScript
